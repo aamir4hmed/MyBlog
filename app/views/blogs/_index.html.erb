@@ -66,8 +66,9 @@
         <%if current_user%>
           <strong><%=link_to 'Read More', blog_path(id: blog.id, access_token: session[:access_token]), remote: true, class: "btn-sm btn-primary"%></strong>
         <%else%>
-          Want to read more!
-            <strong><%=link_to 'Sign me in', new_session_path, class: "btn-sm btn-primary"%></strong>
+          <strong>Want to read more!</strong><br>
+          <strong><%=link_to 'Sign me in', new_session_path, remote: true, class: "btn-sm btn-primary"%></strong>or
+          <%=link_to 'Sign me up as a new user', new_user_path, remote: true, class: "btn-sm btn-primary"%></strong>
         <%end%>
 
         </div>

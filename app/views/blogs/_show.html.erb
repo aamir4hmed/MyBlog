@@ -1,0 +1,60 @@
+<div id="blog">  
+  <table class = "box table table-condensed "> 
+  <div class="row">
+
+    <div class = "col-5">
+      <%if flash[:notice]%>
+        <p class = "alert alert-success alert-dark alert-dismissible" id="notice"><%= notice %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+        </button></p>
+        <%else%>
+        <p></p>
+      <%end%>  
+    </div>
+  </div>    
+  <div class="row">
+    <div class = "col-5">
+      <h4><strong><%= @blog.title%></strong> by <i><%= User.find_by(id: @blog.user_id).name%></i></h4>
+    </div>
+  </div>
+  <div class="row"> 
+    <div class = "col-5">
+    <h6><strong>Title:</strong>
+      <%= @blog.title %></h6>
+    </div>  
+  </div> 
+  <div id="blog">
+  <div class="row">
+    <div class = "col-5">
+       <i><strong>Description:</strong></i>
+        <i><%= @blog.description %></i>
+    </div>
+  </div>
+    <div class="row">  
+      <div class = "col-5">
+        <%= @blog.content %>
+      </div>  
+    </div>  
+    <hr>
+   <div class="row">
+    <%if @blog.user_id == current_user.id %>
+      <div class = "col-5">
+        <%if @blog.article_status == "Drafts"%>
+          <%= link_to 'Publish Article', blog_send_code_path(id: @blog.id, access_token: session[:access_token]), remote: true, class: "btn btn-success"%>
+        <%end%>  
+      </div>
+      <div class = "col-5">
+        <%= link_to 'Edit', edit_blog_path(@blog, access_token: session[:access_token]), remote: true, class: "btn btn-primary" %> 
+      </div>
+    <%end%>
+  </div> 
+    <hr>
+    <div class="row">
+      <div class = "col-5"></td>
+      <div class = "col-5">
+        <%= link_to 'Back', blogs_path(access_token: session[:access_token]), class: "btn btn-info" %>
+      </td>
+    </tr>    
+  </table> 
+</div>

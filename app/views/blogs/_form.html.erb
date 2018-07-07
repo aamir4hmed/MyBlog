@@ -1,52 +1,87 @@
-<%= form_with(model: blog, local: true) do |form| %>
-  <% if blog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+<div id="blog">
+  <%= form_for(@blog, remote: true) do |form| %>
+    <table class = "table table-condensed box-form"> 
+      <thead>
+        <tr class="row">
+          <td class = "col-5">
+            <%if @blog.id%>
+              <h3><strong>Editing Blog</strong></h3>
+            <%else%>
+              <h3><strong>New Blog</strong></h3>
+            <%end%>    
+          </td>
+        </tr>
+        <tr class="row">
+          <td class = "col-5">
+            <% if @blog.errors.any? %>
+              <div id="error_explanation">
+                <h2>
+                  <%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:
+                </h2>
+                <ul>
+                  <% @blog.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </td>
+        </tr>  
+      </thead>
+      <tbody>  
+        <tr class="row">
+          <td class = "col-5">
+            <%= form.label :title %>
+          </td>
+          <td class = "col-5">
+            <%= form.text_field :title, id: :blog_title %>
+          </td>  
+        </tr>   
 
-      <ul>
-      <% blog.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <tr class="row">
+          <td class = "col-5"> 
+            <%= form.label :description %>
+          </td>
+          <td class = "col-5">    
+            <%= form.text_field :description, id: :blog_description %>
+          </td>
+        </tr>    
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :blog_user_id %>
-  </div>
+        <tr class="row">
+          <td class = "col-5">
+            <%= form.label :content %>
+          </td>   
+          <td class = "col-5">
+            <%= form.text_area :content, id: :blog_content %>
+          </td>
+        </tr> 
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :blog_title %>
-  </div>
+        <tr class="row">
+          <td class = "col-3"><%= form.hidden_field :user_id, :value => current_user.id %>
+          </td>
+          <td class = "col-3">
+            <%= form.hidden_field :article_status, :value => "Drafts" %>
+          </td>
+          <td class = "col-3">
+            <%= form.hidden_field :verify, :value => true %>
+          </td>
+        </tr>  
+        <%=hidden_field_tag "access_token", 
+        session[:access_token]%>
+        <div>
+          <tr class="row">
+            <td class = "col-5">
+              <%= form.submit 'Post Article', class: "btn btn-success"%>
+            </td>
+          </tr>  
+        </div>             
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :blog_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content, id: :blog_content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :article_status %>
-    <%= form.text_field :article_status, id: :blog_article_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :verify %>
-    <%= form.check_box :verify, id: :blog_verify %>
-  </div>
-
-  <div class="field">
-    <%= form.label :users_id %>
-    <%= form.text_field :users_id, id: :blog_users_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+        <tr class="row">
+          <td class = "col-5">
+            <%= link_to 'Back', blogs_path(access_token: session[:access_token]),remote: true, class: "btn btn-info" %>
+          </td>
+        </tr>
+      </tbody> 
+    </table>
+  <%end%>
+</div>

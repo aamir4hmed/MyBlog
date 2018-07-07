@@ -1,0 +1,35 @@
+<div class="row">
+  <div class = "col-5">
+
+    <%if flash[:notice]%>
+      <p class = "alert alert-success alert-dark alert-dismissible fade show" id="notice"><%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+      </button></p>
+      <%else%>
+      <p></p>
+    <%end%>  
+  </div>
+</div>  
+<hr> 
+<h3>Just To Be Safe...</h1>
+	<p>
+	    Your account has been created, but we need to make sure you're a human
+	    in control of the phone number you gave us. Can you please enter the 
+	    verification code we just sent to your Twilio Authy app or mobile?
+	</p>
+	<%= form_tag user_verify_code_path(@user.id) do %>
+	  <div class="form-group">
+	    <strong><%= label_tag :code, "Verification Code:" %></strong>
+	    <%= text_field_tag :token, '', class: "form-control" %>
+	  </div>
+	  <button type="submit" class="btn btn-primary">Verify Token</button>
+	<% end -%>
+	<hr>
+	<%= form_tag user_resend_path(@user.id) do %>
+		<div>
+	  	<button type="submit" class="btn btn-info">Resend code</button>
+	  </div>
+	<hr>
+	<br>	
+<% end -%>

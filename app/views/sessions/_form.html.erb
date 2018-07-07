@@ -1,0 +1,79 @@
+<%= form_tag(sessions_path, validate: true) do %>
+  <div class="row">
+    <div class = "col-5">
+
+      <%if flash[:notice]%>
+        <p class = "alert alert-info alert-dark alert-dismissible fade show" id="notice"><%= notice %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+        </button></p>
+        <%else%>
+        <p></p>
+      <%end%>  
+    </div>
+  </div>  
+        <hr> 
+  <table class = "table table-condensed  box-form "> 
+    <thead>
+      <tr class="row">
+        <td class = "col-5 sign-up-header">
+            <h3><strong>Sign up with NewBlog</strong></h3> 
+        </td> 
+        <td class = "col-3 sign-up-header">
+          <%= link_to "Sign me in with Google!", "/auth/google_oauth2", class: "btn btn-success" %>
+        </td> 
+         <td class = "col-3 sign-up-header">  
+          <%= link_to "Sign me in with Facebook!", "/auth/facebook", class: "btn btn-success" %>
+        </td> 
+      </tr> 
+    </thead>
+    <tbody>   
+      <tr class="row">
+        <td class = "col-5">
+          <strong>Email:</strong>
+        </td>
+        <td class = "col-5">
+          <%= text_field_tag :email,nil, placeholder: "Enter your email", required: true %>
+        </td>
+      </tr>
+      <tr class="row">
+        <td class = "col-5">
+          <strong>Password:</strong>
+        </td>
+        <td class = "col-5"> 
+          <%= password_field_tag :password,nil, placeholder: "Enter your Password", required: true %>
+        </td>
+      </tr>
+      <tr class="row">
+        <td class = "col-5"> 
+          <%= hidden_field_tag :provider, "NewBlog" %>
+        </td>
+      </tr>
+    <div class="actions">             
+      <% if current_user %>
+        <tr class="row">
+          <td class = "col-5"> 
+            Signed in as <strong><%= current_user.name %></strong>!
+            <%= link_to "Sign me out!", signout_path, class: "btn btn-warning" %>
+          </td>
+        </tr>
+      <%else%>
+        <tr class="row">
+          <td class = "col-5 offset-5">   
+            <%= submit_tag 'Sign me in!' %>
+          </td>
+        </tr>
+      <%end%>  
+    </div> 
+    <div class="actions">
+      <tr class="row">
+        <td class = "col-5"> 
+          <%= link_to "Sign me up!", new_user_path, class: "btn btn-primary" %>
+        </td>
+      </tr> 
+    </div>
+  </tbody> 
+  </table>
+<%end%>    
+
+ 

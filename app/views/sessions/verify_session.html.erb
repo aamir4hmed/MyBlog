@@ -1,0 +1,24 @@
+<h1>Just To Be Safe...</h1>
+<p>
+    Your account has been created, but we need to make sure you're a human
+    in control of the phone number you gave us. Can you please enter the 
+    verification code we just sent to your phone?
+</p>
+
+<%#Add an ajax method which expires token 30 minutes after @time%>
+<%#Add a session and expire it %>
+
+<%= form_tag session_verify_path do %>
+  <div class="form-group">
+    <%= label_tag :code, "Verification Code:" %>
+    <%= text_field_tag :token, '', class: "form-control" %>
+  </div>
+  <button type="submit" class="btn btn-primary">Verify Token</button>
+<% end -%>
+
+<hr>
+
+<%= form_tag session_resend_path do %>
+  
+  <button type="submit" class="btn">Resend code</button>
+<% end -%>

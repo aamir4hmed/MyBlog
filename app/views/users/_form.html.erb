@@ -1,0 +1,72 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :authy_id %>
+    <%= form.number_field :authy_id, id: :user_authy_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :user_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_digest %>
+    <%= form.text_field :password_digest, id: :user_password_digest %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country_code %>
+    <%= form.text_field :country_code, id: :user_country_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, id: :user_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :verified %>
+    <%= form.check_box :verified, id: :user_verified %>
+  </div>
+
+  <div class="field">
+    <%= form.label :provider %>
+    <%= form.text_field :provider, id: :user_provider %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.text_field :uid, id: :user_uid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :oauth_token %>
+    <%= form.text_field :oauth_token, id: :user_oauth_token %>
+  </div>
+
+  <div class="field">
+    <%= form.label :oauth_expires_at %>
+    <%= form.text_field :oauth_expires_at, id: :user_oauth_expires_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

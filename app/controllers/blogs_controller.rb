@@ -1,5 +1,12 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:index]
+
+  def authorize
+    unless current_user.provider == "facebook" || current_user.provider == "google_oauth2"
+      doorkeeper_authorize!
+    end 
+  end  
 
   # GET /blogs
   # GET /blogs.json

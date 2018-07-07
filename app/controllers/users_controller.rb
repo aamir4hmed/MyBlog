@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @user = User.new
   end
 
-  # GET /users/1
-  # GET /users/1.json
+  # # GET /users/1
+  # # GET /users/1.json
   def show
   end
 
@@ -25,16 +27,54 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        
+    if @user.save
+      @authy_signup = TwilioAuthy.new(@user).sign_up_authy
+      if @authy_signup
+        session[:pre_auth_user_id] = @user.id
+        redirect_to user_send_code_path(id: session[:pre_auth_user_id], access_token: session[:access_token])
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        flash.now[:danger] = "Authy Registration Failed. Please try again"
+        render :new
       end
+    else
+      flash.now[:danger] = "Incorrect User Credentials"
+      render :new
     end
+
+  end
+
+  def send_code
+    @user = User.find_by(id: session[:pre_auth_user_id])
+  end  
+
+  def verify
+    @user = User.find_by(id: session[:pre_auth_user_id])
+    
+    @authy_signup = TwilioAuthy.new(@user).verify_code_authy(@user.authy_id, params[:token] )
+    if @authy_signup
+      # Mark the user as verified for get /user/:id
+      @user.update(verified: true)
+      oauth_token = OauthToken.new(@user).check_token      
+      if oauth_token
+        session[:user_id] = @user.id
+        session[:access_token] = @user.oauth_token  
+        redirect_to root_path(access_token: session[:access_token]) 
+      else
+        redirect_to new_user_path
+      end  
+    else
+      flash.now[:danger] = "Incorrect code, please try again"
+      redirect_to user_send_code_path(id: session[:pre_auth_user_id], access_token: session[:access_token])
+    end
+  end
+
+  def resend
+    @user = User.find_by(id: session[:pre_auth_user_id])
+    # Authy::API.request_sms(id: @user.authy_id)
+    TwilioAuthy.new(@user).send_code_authy(@user.authy_id)
+    flash[:notice] = 'Verification code re-sent'
+    redirect_to user_verify_path(id: @user.id)
   end
 
   # PATCH/PUT /users/1
@@ -69,6 +109,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:authy_id, :name, :email, :password_digest, :country_code, :phone, :verified, :provider, :uid, :oauth_token, :oauth_expires_at)
+      params.require(:user).permit(:name,:email, :country_code, :phone, :password, :password_confirmation, :provider )
     end
 end

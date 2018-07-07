@@ -25,6 +25,15 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
+gem 'oauth2'
+# Use oauth2 for OmniAuth
+gem 'doorkeeper'
+# Use doorkeeper for OmniAuth implementation
+gem "omniauth-facebook"
+# Use omniauth-facebookfor Facebook Sign in
+gem "omniauth-google-oauth2"
+# Use omniauth-facebook for Google Sign in
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

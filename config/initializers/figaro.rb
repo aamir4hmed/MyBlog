@@ -6,7 +6,7 @@
 unless %w(test).include? Rails.env
 
   # Essentials
-
+  Figaro.require_keys(
     # Twilio-Authy
     'authy_api_key',
     'authy_api_uri'

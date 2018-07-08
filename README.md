@@ -1,20 +1,20 @@
-Blog
+#MyBlog
 
 Blog is an Oauth-enabled Blog application integrated with 2 Factor Authentication for Publishing Blogs  
 
-Rails version: 5.1.6
+Rails version: #5.1.6
 
-Ruby version used: 2.3.5
+Ruby version used: #2.3.5
 
-Required Files
+#Required Files
 
 Ensure you have an application.yml with the required keys (see config/initializers/figaro.rb for required keys)
 
-Pro Tips™
+#Pro Tips™
 
 You can only Add new blogs if you are registered as a New Blog user as you require the country code, Phone details to use the 2 Factor Authentication feature.
 
-Setup
+#Setup
 
 Visit https://www.twilio.com/console to set up an Authy Account,created a Task, generated an API Key and referred to https://www.twilio.com/docs/tutorials to implement 2FA
 
@@ -29,35 +29,27 @@ Migrate the database: rake db:migrate
 Get a copy of application.yml for required env var data
 Run the application
 
-Important gems/libraries installed:
-
-# authy to integrate 2 Factor Authentication to MyBlog
+#Important gems/libraries installed:
 
 authy:
+authy to integrate 2 Factor Authentication to MyBlog
 
-# oauth2, doorkeeper to generate access tokens and enable Oauth for New Blog
+oauth2, doorkeeper:
+oauth2, doorkeeper to generate access tokens and enable Oauth for New Blog
 
-oauth2, doorkeeper
+omniauth-facebook, omniauth-google-oauth2:
+Login using Facebook/Google
 
-# Login using Facebook/Google
-
-omniauth-facebook, omniauth-google-oauth2
-
+#figaro:
 Setting up the environment variables
 
-figaro:
-
+bcrypt:
 Bcrpt to encrypt password
 
-bcrypt:
-
+bootstrap:
 bootstrap for implementing UI design.
 
-bootstrap:
-
-
-
-Deployment using Heroku:
+#Deployment using Heroku:
 
 Generate Privacy policy for Facebook and Google Apps for Production ready application
 
@@ -69,17 +61,17 @@ Replace 'sqlite3' gem with 'pg' gem
 
 bundle install
 
-# Creates Heroku live application "https://myblog-2fa.herokuapp.com/"
 heroku create myblog-2fa
+Creates Heroku live application "https://myblog-2fa.herokuapp.com/"
 
-#Push git repository code to Heroku
 git push heroku master
+Push git repository code to Heroku
 
-# Set Environment variables from application.yml file into Heroku config
 figaro heroku:set -e production
+Set Environment variables from application.yml file into Heroku config
 
-# Migrate into Heroku's Postgres Database
 heroku run rake db:migrate
+Migrate into Heroku's Postgres Database
 
 Visited https://myblog-2fa.herokuapp.com/
 

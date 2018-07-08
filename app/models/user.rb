@@ -15,8 +15,6 @@ class User < ApplicationRecord
   validates :email,  presence: true, format: { with: /\A.+@.+$\Z/ }, uniqueness: true
   validates :password_digest, presence: true
   validates :name, presence: true
-  validates :country_code, presence: true
-  validates :phone, presence: true
 
  
   def self.from_omniauth(auth)

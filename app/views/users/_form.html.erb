@@ -78,7 +78,7 @@
         <%= form.label :country_code %>
       </td>  
       <td class = "col-5">
-        <%= form.text_field :country_code, id: :user_country_code %>
+        <%= form.text_field :country_code, id: :user_country_code, required: true %>
       </td>
     </tr>
 
@@ -87,7 +87,7 @@
         <%= form.label :phone %>
       </td> 
       <td class = "col-5"> 
-        <%= form.text_field :phone, id: :user_phone %>
+        <%= form.text_field :phone, id: :user_phone, required: true  %>
       </td>
     </tr>
     <div class="field">
@@ -97,7 +97,7 @@
     <div>
       <tr class="row">
         <td class = "col-5">
-          <%= form.submit 'Sign up' %>
+          <%= form.submit 'Sign up', class: "btn btn-success" %>
         </td>
         <td class = "col-5">
           <%= link_to 'Back', new_session_path, class: "btn btn-info" %>

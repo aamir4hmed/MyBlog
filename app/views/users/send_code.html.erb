@@ -23,12 +23,12 @@
 	    <strong><%= label_tag :code, "Verification Code:" %></strong>
 	    <%= text_field_tag :token, '', class: "form-control" %>
 	  </div>
-	  <button type="submit" class="btn btn-primary">Verify Token</button>
+	  <%= submit_tag 'Verify Token', class: "btn btn-success"%>
 	<% end -%>
 	<hr>
 	<%= form_tag user_resend_path(@user.id) do %>
 		<div>
-	  	<button type="submit" class="btn btn-info">Resend code</button>
+	  	<%= submit_tag 'Resend Code', class: "btn btn-success"%>
 	  </div>
 	<hr>
 	<br>	

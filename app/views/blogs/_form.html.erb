@@ -1,5 +1,18 @@
 <div id="blog">
   <%= form_for(@blog, remote: true) do |form| %>
+    <div class="row">
+      <div class = "col-5">
+
+        <%if flash[:notice]%>
+          <p class = "alert alert-info alert-dark alert-dismissible fade show" id="notice"><%= notice %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+          </button></p>
+          <%else%>
+          <p></p>
+        <%end%>  
+      </div>
+    </div> 
     <table class = "table table-condensed box-form"> 
       <thead>
         <tr class="row">

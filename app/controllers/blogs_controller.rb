@@ -42,7 +42,7 @@ class BlogsController < ApplicationController
     send_token = TwilioAuthy.new(@user).send_code_authy(@user.authy_id)
     respond_to do |format|
       if @blog.save
-        flash[:notice] = 'Blog has been saved'
+        flash[:notice] = 'Blog has been saved as Drafts'
         format.js  { render :send_code, locals: {blog_id: @blog.id} }
       else
         format.js { render :new, locals: {blog_id: @blog.id} }

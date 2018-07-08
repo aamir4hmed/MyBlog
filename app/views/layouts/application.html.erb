@@ -3,12 +3,22 @@
   <head>
     <title>MyBlog</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class ="body">
+    <div class = "col-7-offset-2">
+      <div class="panel">
+        <div class="table-responsive">
+          <div class="container">
+            <div class="border border-dark">
+              <%= yield %>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

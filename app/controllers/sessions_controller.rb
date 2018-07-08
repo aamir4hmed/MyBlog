@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
 
   def new
-    puts session[:access_token]
-    puts session[:expires_at]
   end
     
   def create
@@ -15,18 +13,17 @@ class SessionsController < ApplicationController
           session[:access_token] = @user.oauth_token
           redirect_to blogs_path(access_token: session[:access_token]) 
         else
-          flash.now.alert = "Email or password is invalid"
+          flash[:notice] = "Invalid Authy credentials"
           render "new"
         end  
       else
-        flash.now.alert = "Email or password is invalid"
+        flash[:notice] = "Email or password is invalid"
         render "new"
       end
     else
       @user = User.from_omniauth(request.env['omniauth.auth'].except('extra'))
       session[:user_id] = @user.id
       session[:access_token] = @user.oauth_token
-      session[:expires_at] = @user.oauth_expires_at
       redirect_to blogs_path
     end  
   end
@@ -36,7 +33,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:access_token] = nil
-    session[:expires_at] = nil
     redirect_to new_session_path
   end
 end

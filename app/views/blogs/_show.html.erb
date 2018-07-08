@@ -12,7 +12,8 @@
         <p></p>
       <%end%>  
     </div>
-  </div>    
+  </div> 
+  <hr>   
   <div class="row">
     <div class = "col-5">
       <h4><strong><%= @blog.title%></strong> by <i><%= User.find_by(id: @blog.user_id).name%></i></h4>

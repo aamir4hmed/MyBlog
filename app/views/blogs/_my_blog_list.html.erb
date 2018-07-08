@@ -12,6 +12,9 @@
       <%end%>  
     </div>
   </div>   
+  <%if @blogs.blank?%>
+   <h4><strong>You havent saved any blogs</strong>
+  <%end%> 
   <% @blogs.each do |blog| %> 
     <div class="row">
       <div class = "col-5">

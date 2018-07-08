@@ -34,11 +34,11 @@ class UsersController < ApplicationController
         session[:pre_auth_user_id] = @user.id
         redirect_to user_send_code_path(id: session[:pre_auth_user_id], access_token: session[:access_token])
       else
-        flash.now[:danger] = "Authy Registration Failed. Please try again"
+        flash[:notice] = "Authy Registration Failed. Please try again"
         render :new
       end
     else
-      flash.now[:danger] = "Incorrect User Credentials"
+      flash[:notice] = "Incorrect User Credentials"
       render :new
     end
 

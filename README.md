@@ -1,24 +1,39 @@
-# README
+Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Blog is an Oauth-enabled Blog application integrated with 2 Factor Authentication for Publishing Blogs  
 
-Things you may want to cover:
+Required Files
 
-* Ruby version
+Ensure you have an application.yml with the required keys (see config/initializers/figaro.rb for required keys)
 
-* System dependencies
+Pro Tips™
 
-* Configuration
+You can only Add new blogs if you are registered as a New Blog user as you require the country code, Phone details to use the 2 Factor Authentication feature.
 
-* Database creation
+Installation
 
-* Database initialization
+Install the gems: bundle install
+Migrate the database: rake db:migrate
+Get a copy of application.yml for required env var data
 
-* How to run the test suite
+Important gems/libraries used:
 
-* Services (job queues, cache servers, search engines, etc.)
+authy
 
-* Deployment instructions
+We use authy to integrate 2 Factor Authentication to MyBlog
 
-* ...
+oauth2, doorkeeper
+
+We use oauth2 with doorkeeper to generate access tokens and enable Oauth
+
+omniauth-facebook, omniauth-google-oauth2
+
+We use the above gems for an option to login with Facebook/Google
+
+bcrypt
+
+We use bcrpt to encrypt password
+
+bootstrap
+
+We use bootstrap for implementing UI design.

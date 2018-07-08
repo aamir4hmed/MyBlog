@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :send_code, :verify_code, :resend]
-  before_action :doorkeeper_authorize, except: [:index, :show]
+  before_action :doorkeeper_authorize!, except: [:index, :show]
 
   def index
     # List only published Blogs

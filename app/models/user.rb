@@ -1,7 +1,10 @@
 require 'bcrypt'
 class User < ApplicationRecord
+  # Bcrypt encryption for password
   has_secure_password
   has_many :blogs
+
+  # Associated Doorkeeper models to generate UID, Access Token 
   has_many :access_grants, class_name: "Doorkeeper::AccessGrant",
                            foreign_key: :resource_owner_id,
                            dependent: :delete_all # or :destroy if you need callbacks
@@ -16,7 +19,7 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :name, presence: true
 
- 
+ # Method to login external Oauth Providers
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider

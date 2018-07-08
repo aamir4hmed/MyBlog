@@ -1,4 +1,3 @@
-require File.expand_path('lib/omniauth/strategies/blog_user', Rails.root)
 OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do

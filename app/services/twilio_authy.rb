@@ -7,6 +7,7 @@ class TwilioAuthy
     @user = user
   end
 
+# Return true if Authy Code is successfully updated
   def sign_up_authy
 
     if register_authy.ok?
@@ -20,6 +21,7 @@ class TwilioAuthy
 
   end  
 
+# Generate Authy Code
   def register_authy
 
     Authy::API.register_user(
@@ -30,18 +32,22 @@ class TwilioAuthy
 
   end  
 
+  # Update Authy Code
+
   def update_authy(authy_id)
 
     @user.update(authy_id: authy_id)
 
   end 
 
+  # Send Authy Code to Authy app or Mobile
   def send_code_authy(authy_id)
 
     @authy_sms = Authy::API.request_sms(id: authy_id)
 
   end  
 
+  # Verify Authy Code
   def verify_code_authy(authy_id, token)
 
     @authy_token = Authy::API.verify(id: authy_id, token: token)      

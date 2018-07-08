@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
         
     if @user.save
+      # Use service class to generate Authy code and send it via app or sms
       @authy_signup = TwilioAuthy.new(@user).sign_up_authy
       if @authy_signup
         session[:pre_auth_user_id] = @user.id

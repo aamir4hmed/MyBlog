@@ -3,19 +3,20 @@ class BlogsController < ApplicationController
   before_action :authorize, except: [:index]
 
   def authorize
+    # Use doorkeeper oauth when the provider is not facebook or google
     unless current_user.provider == "facebook" || current_user.provider == "google_oauth2"
       doorkeeper_authorize!
     end 
   end  
 
   def index
-
+    # List only published Blogs
     @blogs = Blog.published
 
   end
 
   def my_blog_list
-
+    # List only the current users blogs
     @blogs = Blog.where(user_id: current_user)
 
   end
@@ -39,6 +40,7 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @user = current_user
+    # Use service class to generate Authy code and send it via app or sms
     send_token = TwilioAuthy.new(@user).send_code_authy(@user.authy_id)
     respond_to do |format|
       if @blog.save
@@ -51,8 +53,10 @@ class BlogsController < ApplicationController
     end
   end
 
+# Method to send Authy code after editing blog
   def send_code
     @user = current_user
+    # Use service class to generate Authy code and send it via app or sms
     send_token = TwilioAuthy.new(@user).send_code_authy(@user.authy_id)
     respond_to do |format|
       if send_token
@@ -65,14 +69,14 @@ class BlogsController < ApplicationController
     end
   end
 
-  
+# Method to verify code after adding/editing blog
   def verify_code
     @user = current_user
-    # Use Authy to send the verification token
+     # Use service class to verify Authy code
     @authy_signup = TwilioAuthy.new(@user).verify_code_authy(@user.authy_id, params[:token] )
     if @authy_signup
-      # Mark the user as verified for get /user/:id
       @blog.update(verify: true)
+      # Publish the blog when after 2FA
       @blog.update(article_status: "Published")
       flash[:notice] = 'Article has been published'
     else
@@ -81,8 +85,10 @@ class BlogsController < ApplicationController
     end
   end
 
+# Method to resend verification code after adding/editing blog
   def resend
     @user = current_user
+      # Use service class to resend Authy code
     TwilioAuthy.new(@user).send_code_authy(@user.authy_id)
     flash[:notice] = 'Verification code re-sent'
     render :send_code, locals: {blog_id: @blog.id}

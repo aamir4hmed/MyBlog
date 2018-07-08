@@ -1,4 +1,4 @@
-#MyBlog
+# MyBlog
 
 Blog is an Oauth-enabled Blog application integrated with 2 Factor Authentication for Publishing Blogs  
 
@@ -6,15 +6,15 @@ Rails version: #5.1.6
 
 Ruby version used: #2.3.5
 
-#Required Files
+# Required Files
 
 Ensure you have an application.yml with the required keys (see config/initializers/figaro.rb for required keys)
 
-#Pro Tips™
+# Pro Tips™
 
 You can only Add new blogs if you are registered as a New Blog user as you require the country code, Phone details to use the 2 Factor Authentication feature.
 
-#Setup
+# Setup
 
 Visit https://www.twilio.com/console to set up an Authy Account,created a Task, generated an API Key and referred to https://www.twilio.com/docs/tutorials to implement 2FA
 
@@ -29,7 +29,7 @@ Migrate the database: rake db:migrate
 Get a copy of application.yml for required env var data
 Run the application
 
-#Important gems/libraries installed:
+# Important gems/libraries installed:
 
 authy:
 authy to integrate 2 Factor Authentication to MyBlog
@@ -40,7 +40,7 @@ oauth2, doorkeeper to generate access tokens and enable Oauth for New Blog
 omniauth-facebook, omniauth-google-oauth2:
 Login using Facebook/Google
 
-#figaro:
+figaro:
 Setting up the environment variables
 
 bcrypt:
@@ -49,7 +49,7 @@ Bcrpt to encrypt password
 bootstrap:
 bootstrap for implementing UI design.
 
-#Deployment using Heroku:
+# Deployment using Heroku:
 
 Generate Privacy policy for Facebook and Google Apps for Production ready application
 

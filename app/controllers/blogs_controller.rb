@@ -1,13 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :send_code, :verify_code, :resend]
-  before_action :authorize, except: [:index]
-
-  def authorize
-    # Use doorkeeper oauth when the provider is not facebook or google
-    unless current_user.provider == "facebook" || current_user.provider == "google_oauth2"
-      doorkeeper_authorize!
-    end 
-  end  
+  before_action :doorkeeper_authorize, except: [:index, :show]
 
   def index
     # List only published Blogs

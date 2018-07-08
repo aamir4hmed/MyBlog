@@ -19,13 +19,13 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'authy', '~> 2.7.1'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-
+# Use authy for integrating Twilio Authy to send security code
+gem 'bcrypt'
+# Use bcrypt for password encryption
+gem 'client_side_validations'
+# Use client_side_validations for Client Side Validations
+gem 'bootstrap', '~> 4.1.1'
+# Use bootstrap for UI design
 gem 'oauth2'
 # Use oauth2 for OmniAuth
 gem 'doorkeeper'
@@ -34,6 +34,15 @@ gem "omniauth-facebook"
 # Use omniauth-facebookfor Facebook Sign in
 gem "omniauth-google-oauth2"
 # Use omniauth-facebook for Google Sign in
+gem 'figaro'
+# Use figaro for storing Environment variables
+gem 'jquery-rails'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.2'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -47,6 +56,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+
+#  gem 'httparty', '~> 0.13.7' # Makes http fun! Also, makes consuming restful web services dead easy
   gem 'selenium-webdriver'
 end
 

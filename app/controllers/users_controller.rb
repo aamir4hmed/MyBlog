@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @user = User.new
+    @users = User.all
   end
 
   # # GET /users/1
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         redirect_to user_send_code_path(id: session[:pre_auth_user_id], access_token: session[:access_token])
       else
         flash[:notice] = "Authy Registration Failed. Please try again"
-        render :new
+        redirect_to new_user_path
       end
     else
       flash[:notice] = "Incorrect User Credentials"
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
 
   def send_code
     @user = User.find_by(id: session[:pre_auth_user_id])
+    puts 
   end  
 
   def verify

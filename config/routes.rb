@@ -17,14 +17,13 @@ Rails.application.routes.draw do
     root 'blogs#index', via: :get
     match "/blog/:id/verify_post", to: 'blogs#verify_post', as: 'blog_verify', via: [:get, :post]
     match "/blog/:id/verify_code", to: 'blogs#verify_code', as: 'blog_verify_code', via: [:get, :post]
-    get "/blog/:id/send_code", to: 'blogs#send_code', as: 'blog_send_code', via: [:get, :post]
+    match "/blog/:id/send_code", to: 'blogs#send_code', as: 'blog_send_code', via: [:get, :post]
     post "/blog/:id/resend", to: 'blogs#resend', as: 'blog_resend'
     match "/my_blog_list", to: 'blogs#my_blog_list', as: 'my_blog_list', via: [:get]
   end
 
   resources :users, only: [:new, :create, :index, :show]
   root 'blogs#index', via: :get
-    # get 'blogs#index', to: 'blogs#index', as: 'blogs', via: :get
   match "/sessions/new", to: 'sessions#new',as: "/login_user", via: [:get,:post]
 
 

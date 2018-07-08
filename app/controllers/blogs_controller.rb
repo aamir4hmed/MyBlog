@@ -47,7 +47,7 @@ class BlogsController < ApplicationController
         flash[:notice] = 'Blog has been saved as Drafts'
         format.js  { render :send_code, locals: {blog_id: @blog.id} }
       else
-        format.js { render :new, locals: {blog_id: @blog.id} }
+        format.js { render :new }
         format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
@@ -59,13 +59,7 @@ class BlogsController < ApplicationController
     # Use service class to generate Authy code and send it via app or sms
     send_token = TwilioAuthy.new(@user).send_code_authy(@user.authy_id)
     respond_to do |format|
-      if send_token
-        flash[:notice] = 'Code has been sent'
-        format.js  { render :send_code, locals: {blog_id: @blog.id} }
-      else
-        format.js { render :new, locals: {blog_id: @blog.id} }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
-      end
+      format.js  { render :send_code, locals: {blog_id: @blog.id} }
     end
   end
 

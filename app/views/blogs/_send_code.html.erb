@@ -24,15 +24,15 @@
 	    <strong><%= label_tag :code, "Verification Code:" %></strong>
 	    <%= text_field_tag :token, '', class: "form-control" %>
 	  </div>
-	  <%= submit_tag 'Verify Code', class: "btn btn-primary"%>
+	  <button type="submit" class="btn btn-primary">Verify Code</button>
 	<% end -%>
 	<hr>
 	<%= form_tag blog_resend_path(id: @blog.id,access_token: session[:access_token]),:remote=> 'true' do %>
 		<div>
-			<%= submit_tag 'Resend Code', class: "btn btn-primary"%>
+			<button type="submit" class="btn btn-primary">Resend Code</button>
 	  </div>
-	<hr>
-	<br>	
+	<hr>	
 	<% end -%>
-
+	<%=link_to 'Back', blogs_path(access_token: session[:access_token]), class: "btn btn-info"%>
+	<br>
 </div>

@@ -13,14 +13,14 @@ class TwilioAuthy
     if register_authy.ok?
       authy_id = register_authy.id
       update_authy(authy_id)
-      return true if send_code_authy(authy_id)
+      send_code_authy(authy_id)
+      return true
     else
       @errors = register_authy.errors
-      return @errors
+      puts @errors
     end      
 
   end  
-
 # Generate Authy Code
   def register_authy
 

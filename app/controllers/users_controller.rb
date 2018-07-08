@@ -46,8 +46,7 @@ class UsersController < ApplicationController
   end
 
   def send_code
-    @user = User.find_by(id: session[:pre_auth_user_id])
-    puts 
+    @user = User.find_by(id: session[:pre_auth_user_id]) 
   end  
 
   def verify

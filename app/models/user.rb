@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_one :application, class_name: "Doorkeeper::Application",
                            foreign_key: :uid
                     
-  validates :email,  presence: true, format: { with: /\A.+@.+$\Z/ }, uniqueness: true
+  validates :email,  presence: true, format: { with: /\A.+@.+$\Z/ }
   validates :password_digest, presence: true
   validates :name, presence: true
 

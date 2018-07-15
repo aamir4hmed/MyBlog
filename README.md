@@ -1,20 +1,20 @@
 # MyBlog
 
-	- Blog is an Oauth-enabled Blog application integrated with 2 Factor Authentication for Publishing Blogs with an option to sign-in using Facebook or Google. 
+	Blog is an Oauth-enabled Blog application integrated with 2 Factor Authentication for Publishing Blogs with an option to sign-in using Facebook or Google. 
 
-Rails version:
-	- # 5.1.6
+# Rails version:
+		5.1.6
 
-Ruby version: 
-	- # 2.3.5
+# Ruby version: 
+		2.3.5
 
 # Required Files
 
-	-Ensure you have an application.yml with the required keys (see config/initializers/figaro.rb for required keys)
+	Ensure you have an application.yml with the required keys (see config/initializers/figaro.rb for required keys)
 
 # Pro Tips™
 
-	-You can only Add new blogs if you are registered as a New Blog user as you require the country code, Phone details to use the 2 Factor Authentication feature.
+	You can only Add new blogs if you are registered as a New Blog user as you require the country code, Phone details to use the 2 Factor Authentication feature.
 
 # Setup
 
@@ -23,44 +23,38 @@ Ruby version:
 	 	- Generate an API Key
 		- Referred to https://www.twilio.com/docs/tutorials to implement 2FA
 
-	- Create a google,facebook application to generate APPID and key for 
-	 	omniauth
+	- Create a google,facebook application to generate APPID and key for 	omniauth
 
 	- Implement Doorkeeper with Oauth to generate UID, Access Tokens for Oauth
 
 	- Implement Bootstrap v4 for simple UI design
 
-	- Install the gems: bundle install
-	- Migrate the database: rake db:migrate
+	- bundle install
+	Installs the gems in the Gemfile
+	- rake db:migrate
+	Migrates the database 
 	- Get a copy of application.yml for required env var data
 	- Run the application
 
 # Important gems/libraries installed:
 
 	- authy:
-
-		- authy to integrate 2 Factor Authentication to MyBlog
+		authy to integrate 2 Factor Authentication to MyBlog
 
 	- oauth2, doorkeeper:
-
-		- oauth2, doorkeeper to generate access tokens and enable Oauth for New 
-			Blog
+		oauth2, doorkeeper to generate access tokens and enable Oauth for New Blog
 
 	- omniauth-facebook, omniauth-google-oauth2:
-
-		- Login using Facebook/Google
+		Login using Facebook/Google
 
 	- figaro:
-
-		- Setting up the environment variables
+		Setting up the environment variables
 
 	- bcrypt:
-
-		- Bcrpt to encrypt password
+		Bcrpt to encrypt password
 
 	- bootstrap:
-
-		- bootstrap for implementing UI design.
+		bootstrap for implementing UI design.
 
 # Deployment using Heroku:
 
@@ -78,17 +72,17 @@ heroku login
 	- bundle install
 
 	- heroku create myblog-2fa
-		-Creates Heroku live application "https://myblog-2fa.herokuapp.com/"
+		Creates Heroku live application "https://myblog-2fa.herokuapp.com/"
 
 	- git push heroku master
-		- Push git repository code to Heroku
+		Push git repository code to Heroku
 
 	- figaro heroku:set -e production
-		- Set Environment variables from application.yml file into Heroku 
+		Set Environment variables from application.yml file into Heroku 
 		config
 
 	- heroku run rake db:migrate
-		- Migrate into Heroku's Postgres Database
+		Migrate into Heroku's Postgres Database
 
 	- Visited https://myblog-2fa.herokuapp.com/
 

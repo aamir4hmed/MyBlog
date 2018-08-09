@@ -83,7 +83,3 @@ heroku login
 
 	- heroku run rake db:migrate
 		Migrate into Heroku's Postgres Database
-
-	- Visited https://myblog-2fa.herokuapp.com/
-
-

@@ -1,12 +1,12 @@
 # MyBlog
 
-	Blog is an Oauth-enabled Blog application integrated with 2 Factor Authentication for Publishing Blogs with an option to sign-in using Facebook or Google. 
+	Blog is an Oauth-enabled Blog application integrated with 2 Factor Authentication for Publishing Blogs with an option 	      to sign-in using Facebook or Google. 
 
 # Rails version:
-		5.1.6
+	5.1.6
 
 # Ruby version: 
-		2.3.5
+	2.3.5
 
 # Required Files
 
@@ -14,7 +14,7 @@
 
 # Pro Tips™
 
-	You can only Add new blogs if you are registered as a New Blog user as you require the country code, Phone details to use the 2 Factor Authentication feature.
+	You can only Add new blogs if you are registered as a New Blog user as you require the country code, Phone details to 	      use the 2 Factor Authentication feature.
 
 # Setup
 
@@ -30,36 +30,41 @@
 	- Implement Bootstrap v4 for simple UI design
 
 	- bundle install
-	Installs the gems in the Gemfile
+	  Installs the gems in the Gemfile
+	  
 	- rake db:migrate
-	Migrates the database 
+	  Migrates the database 
+	  
 	- Get a copy of application.yml for required env var data
 	- Run the application
 
 # Important gems/libraries installed:
 
 	- authy:
-		authy to integrate 2 Factor Authentication to MyBlog
+	  authy to integrate 2 Factor Authentication to MyBlog
 
 	- oauth2, doorkeeper:
-		oauth2, doorkeeper to generate access tokens and enable Oauth for New Blog
+	  oauth2, doorkeeper to generate access tokens and enable Oauth for New Blog
 
-	- omniauth-facebook, omniauth-google-oauth2:
-		Login using Facebook/Google
+	- omniauth-facebook
+	  Login using Facebook credentials
+	
+	- omniauth-google-oauth2:
+	  Login using Google credentials 
 
 	- figaro:
-		Setting up the environment variables
+	  Setting up the environment variables
 
 	- bcrypt:
-		Bcrpt to encrypt password
+	  Bcrpt to encrypt password
 
 	- bootstrap:
-		bootstrap for implementing UI design.
+	  bootstrap for implementing UI design.
 
 # Deployment using Heroku:
 
 	- Generate Privacy policy for Facebook and Google Apps for 
-		Production ready application.
+	  Production ready application.
 
 heroku login
 
@@ -72,14 +77,13 @@ heroku login
 	- bundle install
 
 	- heroku create myblog-2fa
-		Creates Heroku live application "https://myblog-2fa.herokuapp.com/"
+	  Creates Heroku live application "https://myblog-2fa.herokuapp.com/"
 
 	- git push heroku master
-		Push git repository code to Heroku
+	  Push git repository code to Heroku
 
 	- figaro heroku:set -e production
-		Set Environment variables from application.yml file into Heroku 
-		config
+	  Set Environment variables from application.yml file into Heroku config
 
 	- heroku run rake db:migrate
-		Migrate into Heroku's Postgres Database
+	  Migrate into Heroku's Postgres Database

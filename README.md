@@ -40,22 +40,22 @@
 
 ## Important gems/libraries installed:
 
-	- ### authy:
+	- authy:
 		authy to integrate 2 Factor Authentication to MyBlog
 
-	- ### oauth2, ### doorkeeper:
+	- oauth2, doorkeeper:
 		oauth2, doorkeeper to generate access tokens and enable Oauth for New Blog
 
-	- ### omniauth-facebook, ### omniauth-google-oauth2:
+	- omniauth-facebook, omniauth-google-oauth2:
 		Login using Facebook/Google
 
-	- ### figaro:
+	- figaro:
 		Setting up the environment variables
 
-	- ### bcrypt:
+	- bcrypt:
 		Bcrpt to encrypt password
 
-	- ### bootstrap:
+	- bootstrap:
 		bootstrap for implementing UI design.
 
 ## Deployment using Heroku:
@@ -63,7 +63,7 @@
 	- Generate Privacy policy for Facebook and Google Apps for 
 		Production ready application.
 
-	### heroku login
+	 heroku login
 
 	- Install Heroku CLI
 

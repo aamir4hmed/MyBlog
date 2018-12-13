@@ -2,21 +2,21 @@
 
 	Blog is an Oauth-enabled Blog application integrated with 2 Factor Authentication for Publishing Blogs with an option to sign-in using Facebook or Google. 
 
-# Rails version:
+## Rails version:
 		5.1.6
 
-# Ruby version: 
+## Ruby version: 
 		2.3.5
 
-# Required Files
+## Required Files
 
 	Ensure you have an application.yml with the required keys (see config/initializers/figaro.rb for required keys)
 
-# Pro Tips™
+## Pro Tips™
 
 	You can only Add new blogs if you are registered as a New Blog user as you require the country code, Phone details to use the 2 Factor Authentication feature.
 
-# Setup
+## Setup
 
 	- Visit https://www.twilio.com/console to set up an Authy Account.
 	 	- create a Task
@@ -36,24 +36,24 @@
 	- Get a copy of application.yml for required env var data
 	- Run the application
 
-# Important gems/libraries installed:
+## Important gems/libraries installed:
 
-	- authy:
+	- ### authy:
 		authy to integrate 2 Factor Authentication to MyBlog
 
-	- oauth2, doorkeeper:
+	- ### oauth2, ### doorkeeper:
 		oauth2, doorkeeper to generate access tokens and enable Oauth for New Blog
 
-	- omniauth-facebook, omniauth-google-oauth2:
+	- ### omniauth-facebook, ### omniauth-google-oauth2:
 		Login using Facebook/Google
 
-	- figaro:
+	- ### figaro:
 		Setting up the environment variables
 
-	- bcrypt:
+	- ### bcrypt:
 		Bcrpt to encrypt password
 
-	- bootstrap:
+	- ### bootstrap:
 		bootstrap for implementing UI design.
 
 # Deployment using Heroku:
@@ -71,9 +71,8 @@ heroku login
 
 	- bundle install
 
-	- heroku create myblog-2fa
-		Creates Heroku live application "https://myblog-2fa.herokuapp.com/"
-
+	- heroku create 'Application-name'
+		
 	- git push heroku master
 		Push git repository code to Heroku
 

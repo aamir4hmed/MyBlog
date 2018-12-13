@@ -56,12 +56,12 @@
 	- ### bootstrap:
 		bootstrap for implementing UI design.
 
-# Deployment using Heroku:
+## Deployment using Heroku:
 
 	- Generate Privacy policy for Facebook and Google Apps for 
 		Production ready application.
 
-heroku login
+	### heroku login
 
 	- Install Heroku CLI
 
